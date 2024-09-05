@@ -1,7 +1,15 @@
 package main
 
-import "fmt"
+import (
+	"log"
+
+	p2p "github.com/desenv/foreverstore/p2p/tcp"
+)
 
 func main() {
-	fmt.Println("Manelao")
+	tr := p2p.NewTCPTransport(":3001")
+	if err := tr.ListenAndAccept(); err != nil {
+		log.Fatal(err)
+	}
+	select {}
 }
